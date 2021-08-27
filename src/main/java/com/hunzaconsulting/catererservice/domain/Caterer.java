@@ -1,13 +1,16 @@
 package com.hunzaconsulting.catererservice.domain;
 
+import com.hunzaconsulting.catererservice.dto.CatererDto;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.hateoas.RepresentationModel;
 
 @Document
 @Data
 public class Caterer {
+
+    private ModelMapper modelMapper;
 
     @Id
     private String id;
@@ -15,4 +18,9 @@ public class Caterer {
     private Address address;
     private Capacity capacity;
     private Contact contact;
+
+    public CatererDto convertToDto(Caterer post) {
+        CatererDto postDto = modelMapper.map(post, CatererDto.class);
+        return postDto;
+    }
 }
