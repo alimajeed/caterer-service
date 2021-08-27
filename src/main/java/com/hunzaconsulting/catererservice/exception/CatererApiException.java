@@ -2,20 +2,20 @@ package com.hunzaconsulting.catererservice.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class CatererapiException extends RuntimeException {
+public class CatererApiException extends RuntimeException {
 
 	private static final long serialVersionUID = -6593330219878485669L;
 
 	private final HttpStatus status;
 	private final String message;
 
-	public CatererapiException(HttpStatus status, String message) {
+	public CatererApiException(HttpStatus status, String message) {
 		super();
 		this.status = status;
 		this.message = message;
 	}
 
-	public CatererapiException(HttpStatus status, String message, Throwable exception) {
+	public CatererApiException(HttpStatus status, String message, Throwable exception) {
 		super(exception);
 		this.status = status;
 		this.message = message;

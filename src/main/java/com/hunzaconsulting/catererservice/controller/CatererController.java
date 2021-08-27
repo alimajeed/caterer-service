@@ -2,7 +2,7 @@ package com.hunzaconsulting.catererservice.controller;
 
 import com.hunzaconsulting.catererservice.dto.CatererDto;
 import com.hunzaconsulting.catererservice.payload.PagedResponse;
-import com.hunzaconsulting.catererservice.service.CatererService;
+import com.hunzaconsulting.catererservice.service.CatererServiceImpl;
 import com.hunzaconsulting.catererservice.utils.AppConstants;
 import com.hunzaconsulting.catererservice.utils.AppUtils;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @Slf4j
 public class CatererController {
 
-    private CatererService catererService;
+    private CatererServiceImpl catererService;
 
     @PostMapping
     public ResponseEntity<CatererDto> saveCaterer(@Valid @RequestBody CatererDto catererDto, BindingResult result) {
