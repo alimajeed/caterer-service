@@ -1,6 +1,5 @@
 package com.hunzaconsulting.catererservice.domain;
 
-import com.hunzaconsulting.catererservice.dto.CatererDto;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.annotation.Id;
@@ -19,8 +18,4 @@ public class Caterer {
     private Capacity capacity;
     private Contact contact;
 
-    public CatererDto convertToDto(Caterer post) {
-        CatererDto postDto = modelMapper.map(post, CatererDto.class);
-        return postDto;
-    }
 }

@@ -1,20 +1,24 @@
 package com.hunzaconsulting.catererservice.utils;
 
-import com.hunzaconsulting.catererservice.exception.CatererApiException;
-import org.springframework.http.HttpStatus;
+import com.hunzaconsulting.catererservice.config.PropertyConfig;
+import com.hunzaconsulting.catererservice.exception.BadRequestException;
+import com.hunzaconsulting.catererservice.payload.ApiResponse;
 
 public class AppUtils {
 	public static void validatePageNumberAndSize(int page, int size) {
 		if (page < 0) {
-			throw new CatererApiException(HttpStatus.BAD_REQUEST, "Page number cannot be less than zero.");
+			ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Page number cannot be less than zero.");
+			throw new BadRequestException(apiResponse);
 		}
 
 		if (size < 0) {
-			throw new CatererApiException(HttpStatus.BAD_REQUEST, "Size number cannot be less than zero.");
+			ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Size number cannot be less than zero.");
+			throw new BadRequestException(apiResponse);
 		}
 
-		if (size > AppConstants.MAX_PAGE_SIZE) {
-			throw new CatererApiException(HttpStatus.BAD_REQUEST, "Page size must not be greater than " + AppConstants.MAX_PAGE_SIZE);
+		if (size > PropertyConfig.MAX_PAGE_SIZE) {
+			ApiResponse apiResponse = new ApiResponse(Boolean.FALSE, "Page size must not be greater than " + PropertyConfig.MAX_PAGE_SIZE);
+			throw new BadRequestException(apiResponse);
 		}
 	}
 }

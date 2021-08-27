@@ -39,6 +39,7 @@ public class CatererServiceImpl implements CatererService{
 
     private ModelMapper modelMapper;
 
+    //TODO remove later. just for experiments
     @Override
     public PagedResponse<CatererDto> getAllCaterers (){
         Pageable pageable = PageRequest.of(0,2);
@@ -79,7 +80,7 @@ public class CatererServiceImpl implements CatererService{
     public CatererDto getCaterer(String name) {
         System.out.println("fetch caterer");
         Optional<Caterer> catererOptional = catererRepository.findCatererByName(name);
-        CatererDto caterer = catererToCatererDto.convert(catererOptional.orElseThrow(() -> new ResourceNotFoundException("caterer", "name", name)));
+        CatererDto caterer = catererToCatererDto.convert(catererOptional.orElseThrow(() -> new ResourceNotFoundException("Caterer", "name", name)));
         caterer.add(getSelfLink(caterer.getName()));
         return caterer;
     }

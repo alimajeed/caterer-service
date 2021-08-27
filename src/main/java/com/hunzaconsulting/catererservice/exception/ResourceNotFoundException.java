@@ -19,6 +19,7 @@ public class ResourceNotFoundException extends RuntimeException {
 		this.resourceName = resourceName;
 		this.fieldName = fieldName;
 		this.fieldValue = fieldValue;
+		setApiResponse();
 	}
 
 	public String getResourceName() {
@@ -39,7 +40,6 @@ public class ResourceNotFoundException extends RuntimeException {
 
 	private void setApiResponse() {
 		String message = String.format("%s not found with %s: '%s'", resourceName, fieldName, fieldValue);
-
 		apiResponse = new ApiResponse(Boolean.FALSE, message);
 	}
 }
