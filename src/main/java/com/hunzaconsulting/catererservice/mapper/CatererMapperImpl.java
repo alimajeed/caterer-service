@@ -1,24 +1,27 @@
-package com.hunzaconsulting.catererservice.converter;
+package com.hunzaconsulting.catererservice.mapper;
 
 import com.hunzaconsulting.catererservice.domain.Caterer;
 import com.hunzaconsulting.catererservice.dto.CatererDto;
 import lombok.AllArgsConstructor;
-import lombok.Synchronized;
 import org.modelmapper.ModelMapper;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CatererToCatererDto implements Converter<Caterer, CatererDto>  {
+public class CatererMapperImpl implements CatererMapper{
 
     private ModelMapper modelMapper;
 
-    @Synchronized
-    @Nullable
     @Override
-    public CatererDto convert(Caterer caterer) {
+    public Caterer catererDtoToCaterer(CatererDto catererDto) {
+        if (null == catererDto){
+            return null;
+        }
+        return modelMapper.map(catererDto, Caterer.class);
+    }
+
+    @Override
+    public CatererDto catererToCatererDto(Caterer caterer) {
         if (null == caterer){
             return null;
         }

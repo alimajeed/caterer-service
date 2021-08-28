@@ -5,11 +5,11 @@ import com.hunzaconsulting.catererservice.payload.PagedResponse;
 
 public interface CatererService {
 
-    PagedResponse<CatererDto> getCityCaterers(String cityName, Integer page, Integer size);
+    PagedResponse<CatererDto> getPageByCity(String cityName, Integer page, Integer size);
 
-    PagedResponse<CatererDto> getCaterersByName(String name, Integer page, Integer size);
+    PagedResponse<CatererDto> getPageByName(String name, Integer page, Integer size);
 
-    CatererDto getCatererById(String id);
+    CatererDto getById(String id);
 
     CatererDto save(CatererDto catererDto);
 }

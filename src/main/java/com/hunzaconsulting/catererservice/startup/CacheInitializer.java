@@ -1,3 +1,4 @@
+/*
 package com.hunzaconsulting.catererservice.startup;
 
 import com.hunzaconsulting.catererservice.converter.CatererToCatererDto;
@@ -19,8 +20,6 @@ import java.util.List;
 public class CacheInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     private CacheManager cacheManager;
-    private CatererRepository catererRepository;
-    private CatererToCatererDto catererToCatererDto;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -45,10 +44,13 @@ public class CacheInitializer implements ApplicationListener<ContextRefreshedEve
             caterersByName.get(caterer.getName(), List.class).add(catererDto);
 
             //CaterersByCity
-            /*if (null == caterersByCity.get(caterer.getAddress().getCityName())){
+            */
+/*if (null == caterersByCity.get(caterer.getAddress().getCityName())){
                 caterersByName.put(caterer.getName(), new ArrayList<CatererDto>());
             }
-            caterersByCity.get(caterer.getAddress().getCityName(), List.class).add(catererDto);*/
+            caterersByCity.get(caterer.getAddress().getCityName(), List.class).add(catererDto);*//*
+
         }
     }
 }
+*/
