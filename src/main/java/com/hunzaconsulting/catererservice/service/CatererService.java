@@ -10,7 +10,9 @@ public interface CatererService {
 
     PagedResponse<CatererDto> getCityCaterers(String cityName, Integer page, Integer size);
 
-    CatererDto getCaterer(String name);
+    PagedResponse<CatererDto> getCaterersByName(String name, Integer page, Integer size);
+
+    CatererDto getCatererById(String id);
 
     CatererDto save(CatererDto catererDto);
 }

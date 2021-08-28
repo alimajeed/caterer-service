@@ -5,7 +5,7 @@ import com.hunzaconsulting.catererservice.dto.CapacityDto;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class CapacityValidator implements ConstraintValidator<CapacityRange, CapacityDto> {
+public class CapacityValidator implements ConstraintValidator<Range, CapacityDto> {
 
     @Override
     public boolean isValid(CapacityDto capacityDto, ConstraintValidatorContext constraintValidatorContext) {

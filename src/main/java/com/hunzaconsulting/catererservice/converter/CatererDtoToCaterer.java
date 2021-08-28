@@ -1,7 +1,7 @@
 package com.hunzaconsulting.catererservice.converter;
 
-import com.hunzaconsulting.catererservice.dto.CatererDto;
 import com.hunzaconsulting.catererservice.domain.Caterer;
+import com.hunzaconsulting.catererservice.dto.CatererDto;
 import lombok.AllArgsConstructor;
 import lombok.Synchronized;
 import org.modelmapper.ModelMapper;
@@ -23,10 +23,5 @@ public class CatererDtoToCaterer implements Converter<CatererDto, Caterer>  {
             return null;
         }
         return modelMapper.map(catererCommand, Caterer.class);
-        /*final Caterer caterer = new Caterer();
-        caterer.setName(catererCommand.getName());
-        caterer.setAddress(addressConverter.convert(catererCommand.getAddress()));
-        caterer.setCapacity(capacityConverter.convert(catererCommand.getCapacity()));
-        caterer.setContact(contactConverter.convert(catererCommand.getContact()));*/
     }
 }

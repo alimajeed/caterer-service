@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = CapacityValidator.class)
 @Documented
-public @interface CapacityRange {
+public @interface Range {
     String message() default "max is smaller than min";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };

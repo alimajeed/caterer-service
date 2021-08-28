@@ -1,13 +1,13 @@
 package com.hunzaconsulting.catererservice.dto;
 
-import com.hunzaconsulting.catererservice.validator.CapacityRange;
+import com.hunzaconsulting.catererservice.validator.Range;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Data
-@CapacityRange
+@Range
 public class CapacityDto {
 
     @Positive

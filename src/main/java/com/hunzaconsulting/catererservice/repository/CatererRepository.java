@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public interface CatererRepository extends MongoRepository<Caterer, String> {
 
-    Optional<Caterer> findCatererByName(String name);
+    Optional<Caterer> findCatererById(String id);
+    Page<Caterer> findCaterersByName(String name, Pageable pageable);
     Page<Caterer> findCaterersByAddressCityName(String cityName, Pageable pageable);
 
 }
