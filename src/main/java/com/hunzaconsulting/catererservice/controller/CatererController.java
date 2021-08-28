@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping({"", "/", "/caterers", "/caterers/"})
+@RequestMapping({"/api/v1", "/api/v1/", "/api/v1/caterers", "/api/v1/caterers/"})
 @AllArgsConstructor
 @Validated
 @Slf4j
@@ -69,13 +69,4 @@ public class CatererController {
         return responseEntity;
     }
 
-
-
-
-
-    @GetMapping
-    public PagedResponse<CatererDto> fetchAllCaterers () {
-        PagedResponse<CatererDto> catererList = catererService.getAllCaterers();
-        return catererList;
-    }
 }

@@ -6,13 +6,13 @@ import com.hunzaconsulting.catererservice.converter.CatererToCatererDto;
 import com.hunzaconsulting.catererservice.domain.Caterer;
 import com.hunzaconsulting.catererservice.dto.CatererDto;
 import com.hunzaconsulting.catererservice.exception.EntityNotFoundException;
+import com.hunzaconsulting.catererservice.message.MessageProducer;
 import com.hunzaconsulting.catererservice.payload.PagedResponse;
 import com.hunzaconsulting.catererservice.repository.CatererRepository;
 import com.hunzaconsulting.catererservice.utils.AppUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,7 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -41,22 +41,7 @@ public class CatererServiceImpl implements CatererService{
     private CatererDtoToCaterer catererDtoToCaterer;
 
     private ModelMapper modelMapper;
-    private CacheManager cacheManager;
-
-    //TODO remove later. just for experiments
-    @Override
-    public PagedResponse<CatererDto> getAllCaterers (){
-        Pageable pageable = PageRequest.of(0,2);
-        Page<Caterer> caterers = catererRepository.findAll(pageable);
-        if (caterers.getNumberOfElements() == 0) {
-            return new PagedResponse<>(Collections.emptyList(), caterers.getNumber(), caterers.getSize(), caterers.getTotalElements(),
-                    caterers.getTotalPages(), caterers.isLast());
-        }
-
-        List<CatererDto> catererDtoList = Arrays.asList(modelMapper.map(caterers.getContent(), CatererDto[].class));
-        return new PagedResponse<>(catererDtoList, caterers.getNumber(), caterers.getSize(), caterers.getTotalElements(), caterers.getTotalPages(),
-                caterers.isLast());
-    }
+    private MessageProducer messageProducer;
 
     @Override
     @Cacheable(value = "caterersByCity")
@@ -110,7 +95,8 @@ public class CatererServiceImpl implements CatererService{
     public CatererDto save(CatererDto catererDto) {
         Caterer detachedCaterer = catererDtoToCaterer.convert(catererDto);
         Caterer savedCaterer = catererRepository.save(detachedCaterer);
-        log.debug("Saved Caterer:" + savedCaterer.getName());
+        log.debug("Saved Caterer : {}", savedCaterer.getName());
+        messageProducer.sendMessage("INPUT_DATA", savedCaterer.getId(), "Saved Caterer : " + savedCaterer.getName() + " at time : " + LocalDateTime.now().toString());
         CatererDto returnCaterer = catererToCatererDto.convert(savedCaterer);
         returnCaterer.add(getSelfLink(savedCaterer.getId()));
         return returnCaterer;
