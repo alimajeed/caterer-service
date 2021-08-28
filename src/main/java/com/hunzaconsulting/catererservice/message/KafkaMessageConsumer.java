@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-@ConditionalOnProperty(value = "example.kafka.consumer-enabled", havingValue = "true")
+@ConditionalOnProperty(value = "caterers.kafka.consumer-enabled", havingValue = "true")
 public class KafkaMessageConsumer {
 
-    @KafkaListener(topics = {"INPUT_DATA"})
+    @KafkaListener(topics = {"caterers"})
     public void consume(final @Payload String message,
                         final @Header(KafkaHeaders.OFFSET) Integer offset,
                         final @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,

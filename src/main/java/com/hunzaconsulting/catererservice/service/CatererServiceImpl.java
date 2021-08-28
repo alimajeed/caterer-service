@@ -96,7 +96,7 @@ public class CatererServiceImpl implements CatererService{
         Caterer detachedCaterer = catererDtoToCaterer.convert(catererDto);
         Caterer savedCaterer = catererRepository.save(detachedCaterer);
         log.debug("Saved Caterer : {}", savedCaterer.getName());
-        messageProducer.sendMessage("INPUT_DATA", savedCaterer.getId(), "Saved Caterer : " + savedCaterer.getName() + " at time : " + LocalDateTime.now().toString());
+        messageProducer.sendMessage("caterers", savedCaterer.getId(), savedCaterer.toString());
         CatererDto returnCaterer = catererToCatererDto.convert(savedCaterer);
         returnCaterer.add(getSelfLink(savedCaterer.getId()));
         return returnCaterer;
