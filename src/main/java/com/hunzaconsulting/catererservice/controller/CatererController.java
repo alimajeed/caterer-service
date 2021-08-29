@@ -8,7 +8,6 @@ import com.hunzaconsulting.catererservice.service.CatererService;
 import com.hunzaconsulting.catererservice.utils.AppUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @RequestMapping(CatererController.BASE_URL)
 @AllArgsConstructor
@@ -26,7 +26,6 @@ public class CatererController {
     public static final String BASE_URL = "/api/v1/caterers";
 
     private CatererService catererService;
-    private CacheManager cacheManager;
 
     @PostMapping(path = {"/save", "/save/"})
     public ResponseEntity<CatererDto> saveCaterer(@Valid @RequestBody CatererDto catererDto) {
@@ -42,10 +41,10 @@ public class CatererController {
             @PathVariable("name") String name,
             @RequestParam(name = "page", required = false, defaultValue = PropertyConfig.DEFAULT_PAGE_NUMBER) Integer page,
             @RequestParam(name = "size", required = false, defaultValue = PropertyConfig.DEFAULT_PAGE_SIZE) Integer size) throws EntityNotFoundException{
-        log.info("[fetchCatererByName], fetching caterers for name : {}", name);
+        log.info("[fetchCaterersByName], fetching caterers for name : {}", name);
         PagedResponse<CatererDto> caterers = catererService.getPageByName(name, page, size);
         ResponseEntity<PagedResponse<CatererDto>> responseEntity = ResponseEntity.ok().body(caterers);
-        log.info("[fetchCatererByName], response : {}", responseEntity);
+        log.info("[fetchCaterersByName], response : {}", responseEntity);
         return responseEntity;
     }
 
@@ -64,11 +63,10 @@ public class CatererController {
             @RequestParam(name = "page", required = false, defaultValue = PropertyConfig.DEFAULT_PAGE_NUMBER) Integer page,
             @RequestParam(name = "size", required = false, defaultValue = PropertyConfig.DEFAULT_PAGE_SIZE) Integer size) throws EntityNotFoundException{
         AppUtils.validatePageNumberAndSize(page, size);
-        log.info("[fetchAllCaterersByCity], fetching page No : {} for caterers of city : {}", page, cityName);
+        log.info("[fetchCaterersByCity], fetching page No : {} for caterers of city : {}", page - 1, cityName);
         PagedResponse<CatererDto> caterersPage = catererService.getPageByCity(cityName, page, size);
         ResponseEntity<PagedResponse<CatererDto>> responseEntity = ResponseEntity.ok().body(caterersPage);
-        log.info("[fetchAllCaterersByCity], response : {}", responseEntity);
+        log.info("[fetchCaterersByCity], response : {}", responseEntity);
         return responseEntity;
     }
-
 }

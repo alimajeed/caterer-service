@@ -5,8 +5,8 @@ import com.hunzaconsulting.catererservice.exception.BadRequestException;
 
 public class AppUtils {
 	public static void validatePageNumberAndSize(int page, int size) {
-		if (page < 0) {
-			throw new BadRequestException("Page number cannot be less than zero.");
+		if (page <= 0) {
+			throw new BadRequestException("Page number cannot be less than or equal to zero.");
 		}
 
 		if (size < 0) {

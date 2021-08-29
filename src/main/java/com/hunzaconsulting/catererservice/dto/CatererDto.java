@@ -24,12 +24,15 @@ public class CatererDto extends RepresentationModel<CatererDto> {
     @NotBlank
     private String name;
 
+    @NotNull
     @Valid
     private AddressDto address;
 
+    @NotNull
     @Valid
     private CapacityDto capacity;
 
+    @NotNull
     @Valid
     private ContactDto contact;
 

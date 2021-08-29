@@ -42,7 +42,7 @@ public class CatererServiceImpl implements CatererService{
     public PagedResponse<CatererDto> getPageByCity(String cityName, Integer page, Integer size){
         log.debug("fetching caterers for city : {}", cityName);
         AppUtils.validatePageNumberAndSize(page, size);
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page - 1, size);
 
         Page<Caterer> caterers = catererRepository.findCaterersByAddressCityName(cityName, pageable);
 
@@ -54,7 +54,7 @@ public class CatererServiceImpl implements CatererService{
     public PagedResponse<CatererDto> getPageByName(String name, Integer page, Integer size) {
         log.debug("fetching caterers for name : {}", name);
         AppUtils.validatePageNumberAndSize(page, size);
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page - 1, size);
 
         Page<Caterer> caterers = catererRepository.findCaterersByName(name, pageable);
         return getCatererDtoPagedResponse(caterers);
@@ -67,7 +67,6 @@ public class CatererServiceImpl implements CatererService{
         }
         List<CatererDto> caterersList = caterersPage.stream()
                 .map(caterer -> catererMapper.catererToCatererDto(caterer))
-                .peek(catererDto -> System.out.println(catererDto))
                 .map(caterer -> caterer.add(getSelfLink(caterer.getId())))
                 .collect(Collectors.toList());
 
