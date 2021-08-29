@@ -63,18 +63,19 @@ class CatererServiceImplTest {
         when(catererRepository.findCaterersByAddressCityName(anyString(), any())).thenReturn(catererPage);
 
         //when
-        PagedResponse<CatererDto> pageByCity = catererService.getPageByCity(city, 0, 2);
+        int page = 1;
+        PagedResponse<CatererDto> pageByCity = catererService.getPageByCity(city, page, 2);
         //then
-        assertEquals(0, pageByCity.getPage());
+        assertEquals(page-1, pageByCity.getPage());
         assertEquals(2, pageByCity.getSize());
-        assertEquals(1, pageByCity.getTotalPages());
+        assertEquals(page, pageByCity.getTotalPages());
         assertEquals(city, pageByCity.getContent().get(0).getAddress().getCityName());
     }
 
     @Test
     void getCaterersByName() {
         String name = "name";
-        int page = 0;
+        int page = 1;
         int size = 2;
         Caterer caterer1 = Caterer.builder().id("id1").name(name).build();
 
@@ -87,7 +88,7 @@ class CatererServiceImplTest {
         //when
         PagedResponse<CatererDto> pageByName = catererService.getPageByName(name, page, size);
         //then
-        assertEquals(page, pageByName.getPage());
+        assertEquals(page-1, pageByName.getPage());
         assertEquals(size, pageByName.getSize());
         assertEquals(name, pageByName.getContent().get(page).getName());
     }
