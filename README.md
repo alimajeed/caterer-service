@@ -78,13 +78,13 @@ docker build -t alimjd/caterer-service-image .
 docker compose -f docker-compose.yaml up -d
 
 ## Kubernetes
-###Minikube
+### Minikube
 minikube start
 
-###Minikube UI
+### Minikube UI
 minikube dashboard
 
-####Kubernetes Services And Deployments
+#### Kubernetes Services And Deployments
 kubectl apply -f data-persistentvolumeclaim.yaml
 
 kubectl apply -f mongodb-service.yaml,zookeeper-service.yaml,kafka-service.yaml,caterer-service.yaml
