@@ -59,11 +59,6 @@ http://localhost:8090/api/v1/caterers/name/Cassidy Pitts
 #### Get Caterers By City (GET)
 http://localhost:8090/api/v1/caterers/city/Stockholm
 
-### CURL (see later)
-```
-curl -d "{\"firstName\": \"admin\",\"lastName\": \"admin\", \"email\":\"admin@admin.com\", \"password\":\"password\"}" -H "Content-Type:application/json" -X POST http://localhost:8080/signup/
-```
-
 ## Mongo Database UI
 http://localhost:8081/
 
