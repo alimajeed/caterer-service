@@ -8,10 +8,7 @@ React Caterers Application in that:
 - There is a Search bar for finding caterers by name or city.
 - We can also add a caterer
 
-![Screen1](Screen1.png)
-![Screen2](Screen2.png)
-![Screen3](Screen3.png)
-![Screen4](Screen4.png)
+Screens Placed in the folder for reference
 
 ### Set port
 .env
