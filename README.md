@@ -2,7 +2,7 @@
 
 Caterer API using Spring Boot.
 
-- [x] Spring Boot App (No configuration required)
+- [x] Spring Boot App
 - [x] Save caterer
 - [x] Get caterer by id
 - [x] Get caterers by name (multiple possible because name can repeat)
@@ -73,6 +73,7 @@ docker build -t alimjd/caterer-service-image .
 docker compose -f docker-compose.yaml up -d
 
 ## Kubernetes
+
 #### Minikube
 minikube start
 
@@ -80,6 +81,10 @@ minikube start
 minikube dashboard
 
 #### Kubernetes Services And Deployments
+##### Deployment Scripts
+###### path : cd kubernetes
+
+##### Commands
 kubectl apply -f data-persistentvolumeclaim.yaml
 
 kubectl apply -f mongodb-service.yaml,zookeeper-service.yaml,kafka-service.yaml,caterer-service.yaml

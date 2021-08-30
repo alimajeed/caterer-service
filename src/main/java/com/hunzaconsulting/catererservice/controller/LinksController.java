@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping({"", "/", "LinksController.BASE_URL"})
+@RequestMapping({"", "/"})
 @AllArgsConstructor
 @Validated
 @Slf4j
 public class LinksController {
-    public static final String BASE_URL = "/api/v1/caterers";
-
     private LinksService linksService;
 
     @GetMapping
