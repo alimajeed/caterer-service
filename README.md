@@ -78,10 +78,10 @@ docker build -t alimjd/caterer-service-image .
 docker compose -f docker-compose.yaml up -d
 
 ## Kubernetes
-### Minikube
+#### Minikube
 minikube start
 
-### Minikube UI
+#### Minikube UI
 minikube dashboard
 
 #### Kubernetes Services And Deployments
