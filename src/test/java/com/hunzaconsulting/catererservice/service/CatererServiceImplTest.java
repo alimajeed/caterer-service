@@ -2,7 +2,6 @@ package com.hunzaconsulting.catererservice.service;
 
 import com.hunzaconsulting.catererservice.domain.Address;
 import com.hunzaconsulting.catererservice.domain.Caterer;
-import com.hunzaconsulting.catererservice.dto.AddressDto;
 import com.hunzaconsulting.catererservice.dto.CatererDto;
 import com.hunzaconsulting.catererservice.mapper.CatererMapper;
 import com.hunzaconsulting.catererservice.mapper.CatererMapperImpl;

@@ -3,7 +3,7 @@ caterers:
     consumer-enabled: ${consumer-enabled:true}
 spring:
   kafka:
-    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
+    bootstrap-servers: ${KAFKA_HOST}:9092
     properties:
       sasl:
         jaas:
@@ -12,6 +12,7 @@ spring:
       security:
         protocol: SASL_PLAINTEXT
     consumer:
+      bootstrap-servers: ${KAFKA_HOST}:9092
       auto-offset-reset: earliest
       group-id: group-caterers
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -21,6 +22,7 @@ spring:
       enable-auto-commit: false
       client-id: client-consumer-caterers
     producer:
+      bootstrap-servers: ${KAFKA_HOST}:9092
       client-id: client-producer-caterers
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -35,6 +37,9 @@ spring:
     mongodb:
       authentication-database: admin
       database: caterers
-      host: localhost
+      host: ${SPRING_DATA_MONGODB_HOST}
       password: rootpass
+      username: rootuser
       port: 27017
+
+max_page_size: 50
