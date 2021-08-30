@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping(LinksController.BASE_URL)
+@RequestMapping({"", "/", "LinksController.BASE_URL"})
 @AllArgsConstructor
 @Validated
 @Slf4j
