@@ -94,3 +94,6 @@ kubectl apply -f mongodb-deployment.yaml,zookeeper-deployment.yaml
 kubectl apply -f kafka-deployment.yaml
 
 kubectl apply -f caterer-deployment.yaml
+
+#### Run
+minikube service <service-name>
