@@ -1,6 +1,7 @@
 # Caterer API 
 
-Caterer API using Spring Boot.
+Caterer API with Docker and Kubernetes Deployment Scripts.
+Front End Client In ReactJS
 
 - [x] Spring Boot App
 - [x] Save caterer
