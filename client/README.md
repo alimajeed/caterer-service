@@ -9,6 +9,7 @@ React Caterers Application in that:
 - We can also add a caterer
 
 Screens Placed in the folder for reference
+![Screen1](Screen1.png)
 
 ### Set port
 .env
